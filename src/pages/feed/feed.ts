@@ -18,7 +18,7 @@ export class FeedPage {
   }
 
   public somaDoisNumeros(num1: number, num2: number): void{
-    alert(num1 + num2);
+    console.log(num1 + num2);
   }
 
 }
