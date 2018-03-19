@@ -8,6 +8,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class FeedPage {
 
+  public nomeUsuario: string = 'José Levy feeds';
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
