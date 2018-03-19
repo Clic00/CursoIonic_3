@@ -14,12 +14,11 @@ export class FeedPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad FeedPage');
-    this.somaDoisNumeros();
+    this.somaDoisNumeros(6, 5);
   }
 
-  public somaDoisNumeros(): void{
-    alert(5 + 10);
+  public somaDoisNumeros(num1: number, num2: number): void{
+    alert(num1 + num2);
   }
 
 }
