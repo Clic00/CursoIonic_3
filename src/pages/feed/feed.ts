@@ -15,6 +15,11 @@ export class FeedPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad FeedPage');
+    this.somaDoisNumeros();
+  }
+
+  public somaDoisNumeros(): void{
+    alert(5 + 10);
   }
 
 }
