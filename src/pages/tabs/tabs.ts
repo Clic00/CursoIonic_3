@@ -14,6 +14,5 @@ export class TabsPage {
   tab4Root = FeedPage;
 
   constructor() {
-
   }
 }
