@@ -32,9 +32,9 @@ export class FeedPage {
   ionViewDidLoad() {
     this.mooviePrivider.getLatestMovies()
       .subscribe( 
-        data => {
-          console.log(data)
-        },
+        response => { 
+          console.log(response);
+        },  
         error => {
           console.log(error)
         }

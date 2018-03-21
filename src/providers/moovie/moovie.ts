@@ -12,6 +12,6 @@ export class MoovieProvider {
   }
   
   getLatestMovies() {
-    return this.http.get(API_CONFIG.baseUrl + '/movie/latest' + API_CONFIG.apiKey);
+    return this.http.get(API_CONFIG.baseUrl + '/movie/popular' + API_CONFIG.apiKey);
   }
 }
