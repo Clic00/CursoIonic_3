@@ -1,10 +1,14 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { MoovieProvider } from '../../providers/moovie/moovie';
 
 @IonicPage()
 @Component({
   selector: 'page-feed',
   templateUrl: 'feed.html',
+  providers: [
+    MoovieProvider
+  ]
 })
 export class FeedPage {
 
@@ -19,11 +23,22 @@ export class FeedPage {
 
   public nomeUsuario: string = 'José Levy feeds';
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    private mooviePrivider: MoovieProvider) {
   }
 
   ionViewDidLoad() {
-    this.somaDoisNumeros(6, 5);
+    this.mooviePrivider.getLatestMovies()
+      .subscribe( 
+        data => {
+          console.log(data)
+        },
+        error => {
+          console.log(error)
+        }
+      );
   }
 
   public somaDoisNumeros(num1: number, num2: number): void{
