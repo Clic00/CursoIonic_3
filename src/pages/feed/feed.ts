@@ -21,6 +21,7 @@ export class FeedPage {
     timeComments: "07 ago"
   }
 
+  public listaDeFilmes: Array<any>[];
   public nomeUsuario: string = 'José Levy feeds';
 
   constructor(
@@ -34,6 +35,7 @@ export class FeedPage {
       .subscribe( 
         response => { 
           console.log(response);
+          this.listaDeFilmes = response['results'];
         },  
         error => {
           console.log(error)
