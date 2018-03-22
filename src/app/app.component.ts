@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { IntroPage } from '../pages/intro/intro';
 import { SetupProvider } from '../providers/localstorage/setup';
+import { TabsPage } from '../pages/tabs/tabs';
 
 @Component({
   templateUrl: 'app.html',
@@ -13,7 +14,7 @@ import { SetupProvider } from '../providers/localstorage/setup';
   ]
 })
 export class MyApp {
-  rootPage:any = IntroPage;
+  rootPage:any;
 
   constructor(
     platform: Platform, 
@@ -26,6 +27,15 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
 
       let setup = setupProvider.getSetupData();
+
+      if(setup == null) {
+        this.rootPage = IntroPage;
+        setupProvider.setSetupData(false,"Levy");
+      }
+      else {
+        this.rootPage = TabsPage;
+      }
+      
       console.log(setup);
       
       statusBar.styleDefault();
