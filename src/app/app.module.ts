@@ -13,6 +13,10 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { FeedPageModule } from '../pages/feed/feed.module';
 import { IntroPageModule } from '../pages/intro/intro.module';
+import { ConfiguracaoPageModule } from '../pages/configuracao/configuracao.module';
+import { SobrePageModule } from '../pages/sobre/sobre.module';
+import { PerfilPageModule } from '../pages/perfil/perfil.module';
+import { LoginPageModule } from '../pages/login/login.module';
 
 @NgModule({
   declarations: [
@@ -27,7 +31,11 @@ import { IntroPageModule } from '../pages/intro/intro.module';
     IonicModule.forRoot(MyApp),
     FeedPageModule,
     IntroPageModule,
-    HttpClientModule
+    HttpClientModule,
+    ConfiguracaoPageModule,
+    SobrePageModule,
+    PerfilPageModule,
+    LoginPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
