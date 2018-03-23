@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Detalhes</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card *ngIf="filme">
+    <ion-card-content>
+      <p>{{ filme.overview }}</p>
+    </ion-card-content>
+    <ion-row>
+      <ion-col>
+
+        <ion-icon name="videocam"></ion-icon>
+        <div>{{ filme.production_companies[0].name }}</div>
+
+      </ion-col>
+      <ion-col>
+        <ion-icon name="flag"></ion-icon>
+        <div>{{ filme.production_countries[0].name }}</div>
+      </ion-col>
+      <ion-col center text-center>
+        <ion-note>
+          {{ filme.homepage }}
+        </ion-note>
+      </ion-col>
+    </ion-row>
+
+  </ion-card>
+</ion-content>

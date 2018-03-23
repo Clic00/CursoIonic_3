@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { MoovieProvider } from '../../providers/moovie/moovie';
+import { DetalhesPage } from '../detalhes/detalhes';
 
 @IonicPage()
 @Component({
@@ -31,20 +32,21 @@ export class FeedPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private mooviePrivider: MoovieProvider,
+    private moovieProvider: MoovieProvider,
     public loadingCtrl: LoadingController) {
   }
 
   ionViewDidLoad() {
     this.presentLoading();    
   }
+  
   ionViewDidEnter() {
     this.loadMovies();
   }
 
   public loadMovies() {
     
-    this.mooviePrivider.getLatestMovies()
+    this.moovieProvider.getLatestMovies()
       .subscribe(
         response => {
           console.log(response);
@@ -80,5 +82,9 @@ export class FeedPage {
     this.refresher = refresher;
     this.isRefreshing = true;
     this.loadMovies();
+  }
+
+  goDetails(filme) {
+    this.navCtrl.push(DetalhesPage, { id : filme.id});
   }
 }

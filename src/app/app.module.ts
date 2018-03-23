@@ -17,6 +17,7 @@ import { ConfiguracaoPageModule } from '../pages/configuracao/configuracao.modul
 import { SobrePageModule } from '../pages/sobre/sobre.module';
 import { PerfilPageModule } from '../pages/perfil/perfil.module';
 import { LoginPageModule } from '../pages/login/login.module';
+import { DetalhesPageModule } from '../pages/detalhes/detalhes.module';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { LoginPageModule } from '../pages/login/login.module';
     ConfiguracaoPageModule,
     SobrePageModule,
     PerfilPageModule,
-    LoginPageModule
+    LoginPageModule,
+    DetalhesPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

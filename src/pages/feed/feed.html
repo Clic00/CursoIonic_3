@@ -20,21 +20,17 @@
 
     <img [src]="'https://image.tmdb.org/t/p/w300/' + filme.backdrop_path">
 
-    <ion-card-content>
-      <p>{{ filme.overview }}</p>
-    </ion-card-content>
-
     <ion-row>
       <ion-col>
         <button ion-button icon-left clear small>
           <ion-icon name="thumbs-up"></ion-icon>
-          <div>{{ objeto_feed.qtdLikes }} Likes</div>
+          <div>{{ filme.vote_count }} votos</div>
         </button>
       </ion-col>
       <ion-col>
         <button ion-button icon-left clear small>
-          <ion-icon name="text"></ion-icon>
-          <div>{{ objeto_feed.qtdComments }} comments</div>
+          <ion-icon name="pie"></ion-icon>
+          <div>média: {{ filme.vote_average }}</div>
         </button>
       </ion-col>
       <ion-col center text-center>
@@ -43,6 +39,6 @@
         </ion-note>
       </ion-col>
     </ion-row>
-
+    <button ion-button block (click)="goDetails(filme)">Detalhes</button>
   </ion-card>
 </ion-content>
