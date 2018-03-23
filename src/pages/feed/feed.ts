@@ -13,6 +13,8 @@ import { MoovieProvider } from '../../providers/moovie/moovie';
 export class FeedPage {
 
   public loader;
+  public refresher;
+  public isRefreshing: boolean = false;
 
   public objeto_feed = {
     titulo: "Jose Levy",
@@ -33,23 +35,36 @@ export class FeedPage {
     public loadingCtrl: LoadingController) {
   }
 
+  ionViewDidLoad() {
+    this.presentLoading();    
+  }
   ionViewDidEnter() {
-    this.presentLoading();
+    this.loadMovies();
+  }
+
+  public loadMovies() {
+    
     this.mooviePrivider.getLatestMovies()
       .subscribe(
         response => {
           console.log(response);
           this.listaDeFilmes = response['results'];
           this.loader.dismiss();
+          if(this.isRefreshing){
+            this.refresher.complete();
+            this.isRefreshing = false;
+          }
         },
         error => {
           console.log(error);
           this.loader.dismiss();          
+          if(this.isRefreshing){
+            this.refresher.complete();
+            this.isRefreshing = false;
+          }          
         }
       );
-
   }
-
   public somaDoisNumeros(num1: number, num2: number): void {
     console.log(num1 + num2);
   }
@@ -59,5 +74,11 @@ export class FeedPage {
       content: "Aguarde por favor...",
     });
     this.loader.present();
+  }
+
+  doRefresh(refresher) {
+    this.refresher = refresher;
+    this.isRefreshing = true;
+    this.loadMovies();
   }
 }

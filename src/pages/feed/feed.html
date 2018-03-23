@@ -6,6 +6,9 @@
 </ion-header>
 
 <ion-content padding>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <ion-card *ngFor="let filme of listaDeFilmes">
     <ion-item>
       <ion-avatar item-start>
@@ -36,7 +39,7 @@
       </ion-col>
       <ion-col center text-center>
         <ion-note>
-          {{ objeto_feed.timeComments }} 
+          {{ objeto_feed.timeComments }}
         </ion-note>
       </ion-col>
     </ion-row>
