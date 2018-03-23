@@ -16,6 +16,8 @@ export class FeedPage {
   public loader;
   public refresher;
   public isRefreshing: boolean = false;
+  public page: number = 1;
+  public infiniteScroll;
 
   public objeto_feed = {
     titulo: "Jose Levy",
@@ -26,7 +28,7 @@ export class FeedPage {
     timeComments: "07 ago"
   }
 
-  public listaDeFilmes: Array<any>[];
+  public listaDeFilmes: Array<any>[] = [];
   public nomeUsuario: string = 'José Levy feeds';
 
   constructor(
@@ -37,33 +39,38 @@ export class FeedPage {
   }
 
   ionViewDidLoad() {
-    this.presentLoading();    
+    this.presentLoading();
   }
-  
+
   ionViewDidEnter() {
     this.loadMovies();
   }
 
   public loadMovies() {
-    
-    this.moovieProvider.getLatestMovies()
+
+    this.moovieProvider.getLatestMovies(this.page)
       .subscribe(
         response => {
           console.log(response);
-          this.listaDeFilmes = response['results'];
+          let filmes = response['results'];
+          this.listaDeFilmes = this.listaDeFilmes.concat(filmes);
+          if (this.page > 1) {
+            this.infiniteScroll.complete();
+          }
+
           this.loader.dismiss();
-          if(this.isRefreshing){
+          if (this.isRefreshing) {
             this.refresher.complete();
             this.isRefreshing = false;
           }
         },
         error => {
           console.log(error);
-          this.loader.dismiss();          
-          if(this.isRefreshing){
+          this.loader.dismiss();
+          if (this.isRefreshing) {
             this.refresher.complete();
             this.isRefreshing = false;
-          }          
+          }
         }
       );
   }
@@ -85,6 +92,12 @@ export class FeedPage {
   }
 
   goDetails(filme) {
-    this.navCtrl.push(DetalhesPage, { id : filme.id});
+    this.navCtrl.push(DetalhesPage, { id: filme.id });
+  }
+
+  doInfinite(infiniteScroll) {
+    this.page++;
+    this.infiniteScroll = infiniteScroll;
+    this.loadMovies();
   }
 }

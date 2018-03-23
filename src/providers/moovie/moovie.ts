@@ -11,11 +11,11 @@ export class MoovieProvider {
 
   }
   
-  getLatestMovies() {
-    return this.http.get(API_CONFIG.baseUrl + '/movie/popular' + API_CONFIG.apiKey);
+  getLatestMovies(page = 1) {
+    return this.http.get(API_CONFIG.baseUrl + `/movie/popular?page=${page}&` + API_CONFIG.apiKey);
   }
 
   getDetailsMovie(id: number) {
-    return this.http.get(API_CONFIG.baseUrl + `/movie/${id}` + API_CONFIG.apiKey);
+    return this.http.get(API_CONFIG.baseUrl + `/movie/${id}?` + API_CONFIG.apiKey);
   }
 }
