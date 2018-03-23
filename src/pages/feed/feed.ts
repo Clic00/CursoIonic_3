@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { MoovieProvider } from '../../providers/moovie/moovie';
 
 @IonicPage()
@@ -11,6 +11,8 @@ import { MoovieProvider } from '../../providers/moovie/moovie';
   ]
 })
 export class FeedPage {
+
+  public loader;
 
   public objeto_feed = {
     titulo: "Jose Levy",
@@ -25,25 +27,37 @@ export class FeedPage {
   public nomeUsuario: string = 'José Levy feeds';
 
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public navParams: NavParams,
-    private mooviePrivider: MoovieProvider) {
+    private mooviePrivider: MoovieProvider,
+    public loadingCtrl: LoadingController) {
   }
 
-  ionViewDidLoad() {
+  ionViewDidEnter() {
+    this.presentLoading();
     this.mooviePrivider.getLatestMovies()
-      .subscribe( 
-        response => { 
+      .subscribe(
+        response => {
           console.log(response);
           this.listaDeFilmes = response['results'];
-        },  
+          this.loader.dismiss();
+        },
         error => {
-          console.log(error)
+          console.log(error);
+          this.loader.dismiss();          
         }
       );
+
   }
 
-  public somaDoisNumeros(num1: number, num2: number): void{
+  public somaDoisNumeros(num1: number, num2: number): void {
     console.log(num1 + num2);
+  }
+
+  presentLoading() {
+    this.loader = this.loadingCtrl.create({
+      content: "Aguarde por favor...",
+    });
+    this.loader.present();
   }
 }
